@@ -16,3 +16,28 @@
 ##    ('9', ['A', 'B', 'E', 'C'])
 ##
 ##
+import glob
+filenames = glob.glob("data.csv")
+data = open("data.csv", "r").readlines()
+data = [line[:-1] for line in data]
+data = [line.replace("\t",",") for line in data]
+data = [line.split(",") for line in data]
+data = [[line[1], line[0]] for line in data]
+datas = set([line[0] for line in data])
+uno = []
+for num in datas:
+  x = [num]
+  for ind in data:
+    if num == ind[0]:
+      x.append(ind[1])
+  x = [y for y in x]
+  uno = uno+[x]
+cuatro = [line[0] for line in uno]
+cinco = [line[1:] for line in uno]
+dos=[]
+for i in range(0, len(uno)):
+  tres= (cuatro[i], cinco[i])
+  dos = dos+[tres]
+dos = sorted(dos)
+for line in dos:
+  print(line)
